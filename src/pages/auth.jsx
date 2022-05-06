@@ -5,20 +5,20 @@ import app from '../firebase';
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const [authState,setAuthState] = React.useState(false);
+  const [authState, setAuthState] = React.useState(false);
 
   useEffect(() => {
     const auth = getAuth(app);
     auth.onAuthStateChanged(user => {
       if (user) {
         setAuthState(true)
-      }else {
+      } else {
         setAuthState(false)
       }
     });
 
     return () => {
-      
+
     }
   }, [])
 
@@ -28,7 +28,7 @@ const AuthPage = () => {
       navigate('/')
     })
   }
-  
+
 
   return (
     <main>
@@ -47,18 +47,19 @@ const AuthPage = () => {
         <meta name="theme-color" content="#317EFB" />
       </header>
       {!authState ?
-      <div className='grid place-items-center h-screen'>
-        <button className='border-2 border-black bg-green-500 rounded-lg' onClick={() => navigate("/auth/register")}>s'enregistrer</button>
-        <button className='border-2 border-black bg-green-500 rounded-lg' onClick={() => navigate("/auth/login")}>s'identifier</button>
-      </div>
-      : 
-      <div>
-        <h1 className='flex justify-center items-center'>Vous êtes connecté</h1>
-        <div className='flex justify-center'>
-        <button className='text-center w-5/6 h-24 bg-green-500 border-2 border-black rounded-lg' onClick={() => signeOut()}>se déconnecter</button>
+        <div className='grid place-items-center h-screen'>
+          <button className='border-2 border-black bg-green-500 rounded-lg' onClick={() => navigate("/auth/register")}>s'enregistrer</button>
+          <button className='border-2 border-black bg-green-500 rounded-lg' onClick={() => navigate("/auth/login")}>s'identifier</button>
         </div>
-      </div>
+        :
+        <div>
+          <h1 className='flex justify-center items-center'>Vous êtes connecté</h1>
+          <div className='flex justify-center'>
+            <button className='text-center w-5/6 h-24 bg-green-500 border-2 border-black rounded-lg' onClick={() => signeOut()}>se déconnecter</button>
+          </div>
+        </div>
       }
+      <div className='flex justify-center'><button className='border-2 border-black bg-green-500 rounded-lg mt-6' onClick={() => navigate("/")}>retourner à l'accueil</button></div>
     </main>
   );
 };

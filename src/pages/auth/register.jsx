@@ -5,7 +5,7 @@ const register = () => {
   return (
     <div>
       {/* meta */}
-      <header>
+      <head>
         <meta charSet='utf-8' />
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no' />
@@ -18,7 +18,7 @@ const register = () => {
         <link href='/favicon.ico' rel='icon' sizes='32x32' />
         <link rel="apple-touch-icon" href="/favicon.ico"></link>
         <meta name="theme-color" content="#317EFB" />
-      </header>
+      </head>
       {/* content page */}
       <RegisterForm />
     </div>
