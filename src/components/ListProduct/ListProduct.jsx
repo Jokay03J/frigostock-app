@@ -1,42 +1,59 @@
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import superagent from 'superagent';
+import app from '../../firebase';
 import closeIcon from "./removeIcon.svg";
 
 const ListProduct = () => {
   //state
   const [products, setProducts] = useState([]);
   const [isloading, setLoading] = useState(true);
+  const [isUserConnected, setUserConnected] = useState(false);
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
   //componentDidMount & fetch products
-  useEffect(() => {
-    superagent
-      .get("https://frigostock-api.herokuapp.com/fridge/products")
-      .end((err, res) => {
-        if (err) {
-          console.log(err);
-        } else {
-          //success,set products and set loading to false
-          setProducts(res.body);
-          setLoading(false);
-        }
-      })
-    return () => {
-      // cleanup
-    }
-  }, [])
 
+  useEffect(() => {
+    const auth = getAuth(app)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user)
+        superagent
+          .get(`https://frigostock-api.herokuapp.com/fridge/${user.uid}/products`)
+          .end((err, res) => {
+            if (err) {
+              console.log(err);
+            } else {
+              //success,set products and set loading to false
+              setProducts(res.body);
+              setLoading(false);
+              setUserConnected(true);
+            }
+          })
+      }
+      else setUserConnected(false);
+    })
+  }, [])
 
   return (
     <div>
       {/* Notification components */}
       <Toaster />
       {/* List products */}
-      {isloading ? <div className="text-center text-3xl">chargement en cours...</div> :
-        !products ? <div className='flex justify-center text-3xl'>aucun produit</div> :
-        <div className='flex items-center flex-col p-2 max-h-screen'>
-          {products.map(product => renderProducts(product))}
-        </div>
+      {
+        isUserConnected ?
+          isloading ? <div className="text-center text-3xl">chargement en cours...</div> :
+            products.length === 0 ? <div className='flex justify-center text-3xl'>aucun produit</div> :
+              <div className='flex items-center flex-col p-2 max-h-screen'>
+                {products.map(product => renderProducts(product,user))}
+              </div>
+
+          : <div className='flex justify-center'>
+            <button className='bg-green-500 border-2 border-black h-16 w-5/6 mt-6 rounded-lg' onClick={() => navigate("/auth")}>se connecter ou s'enregistrer</button>
+          </div>
       }
     </div>
   );
@@ -44,22 +61,22 @@ const ListProduct = () => {
 
 export default ListProduct;
 
-function renderProducts(product) {
+function renderProducts(product,user) {
   return (
-        <div key={product.id} className="w-11/12 h-14 m-1 rounded-lg bg-green-500 border border-black flex justify-between items-center">
-          <div className='text-1xl'>{product.name}</div>
-          <div className='text-3xl'>x{product.amount}</div>
-          <img src={closeIcon} alt="remove product" height={50} width={50} className="float-right h-12 w-12" onClick={() => remove(product.id)} />
-        </div>
+    <div key={product.id} className="w-11/12 h-14 m-1 rounded-lg bg-green-500 border border-black flex justify-between items-center">
+      <div className='text-1xl'>{product.name}</div>
+      <div className='text-3xl'>x{product.amount}</div>
+      <img src={closeIcon} alt="remove product" height={50} width={50} className="float-right h-12 w-12" onClick={() => remove(product.id,user)} />
+    </div>
   )
 }
 
-function remove(id) {
+function remove(id,user) {
   //promise
   const promise = new Promise((resolve, reject) => {
     //fetch specific product by id
     superagent
-      .delete(`https://frigostock-api.herokuapp.com/fridge/products/${id}`)
+      .delete(`https://frigostock-api.herokuapp.com/fridge/${user.uid}/products/${id}`)
       .end((err, res) => {
         if (res.status === 204) {
           setTimeout(() => {

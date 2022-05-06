@@ -1,21 +1,29 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Quagga from 'quagga';
 import InputCodeBar from '../InputCodeBar/InputCodeBar';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import superagent from 'superagent';
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import productAtom from '../../state/product';
 import "./Video.css";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Video = () => {
   const [videoInit, setVideoInit] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [attempts, setAttempts] = useState(0);
-  const [product, setProduct] = useState(null);
+  const setProduct = useSetRecoilState(productAtom);
+  const product = useRecoilValue(productAtom);
   const [codebar, setCodeBar] = useState("");
 
-  const onProductFound = (product) => {
-    console.log(product.product);
-    setProduct(product.product);
-    setCodeBar(product.code);
+  const onProductFound = (res) => {
+    console.log(res.product);
+    //set product name
+    if (!res.product.generic_name_fr || !res.product.product_name_fr) toast.error("produit introuvable");
+    else {
+      setProduct({ ...product, name: res.product.generic_name_fr? res.product.generic_name_fr : res.product.product_name_fr });
+      setCodeBar(res.code);
+    }
   }
 
   const onInitSuccess = () => {
@@ -24,10 +32,10 @@ const Video = () => {
   }
 
   const onDetected = (result) => {
-    Quagga.offDetected(onDetected);
-    superagent.get(`https://fr.openfoodfacts.org/api/v0/product/${result.codeResult.code}.json`)
-      // eslint-disable-next-line no-use-before-define
-      .then(res => onInfoFetched(res.body));
+      Quagga.offDetected(onDetected);
+      superagent.get(`https://fr.openfoodfacts.org/api/v0/product/${result.codeResult.code}.json`)
+        // eslint-disable-next-line no-use-before-define
+        .then(res => onInfoFetched(res.body));
   }
 
   const onInfoFetched = (res) => {
@@ -79,6 +87,7 @@ const Video = () => {
   return (
 
     <div>
+      <Toaster />
       <div className="flex justify-center text-2xl">
         scanner un produit
       </div>
@@ -98,10 +107,7 @@ const Video = () => {
         }
       </div>
       <InputCodeBar code={codebar} />
-      {product ? <ProductInfo product={product} /> :
-      <div className='text-center text-3xl mt-3'>
-        <div> veuillez scanner un code bar ou entrer un code bar valide</div>
-      </div>}
+      <ProductInfo />
     </div>
   );
 }
