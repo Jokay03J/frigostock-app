@@ -18,7 +18,7 @@ export default function Home() {
         <link rel="apple-touch-icon" href="/favicon.ico"></link>
         <meta name="theme-color" content="#317EFB" />
       </header>
-      <main>
+      <main style={{ width: "100vw", height: "100vh" }}>
         <ListProduct />
         <NavBar />
       </main>
