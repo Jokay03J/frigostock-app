@@ -77,7 +77,7 @@ const ProductInfo = () => {
       <div className='overflow-auto'>
         <div className='flex justify-center my-2'>
           {/* Placement input */}
-          <select className='ml-3 rounded-lg bg-green-500 border-2 border-black h-10 flex justify-center' placeholder='veuillez sélectionner un type' onChange={(e) => OnSelectChange(e.target.value)} defaultValue={product.place}>
+          <select className='rounded-lg my-1 bg-green-500 border-2 border-black h-10 flex justify-center' placeholder='veuillez sélectionner un type' onChange={(e) => OnSelectChange(e.target.value)} defaultValue={product.place}>
             <option value={null} className="text-black">placement</option>
             <option value="frigo">frigo</option>
             <option value="congélateur">congélateur</option>
@@ -92,13 +92,13 @@ const ProductInfo = () => {
         {/* product name container */}
         <div className='flex justify-center'>
           {/* product name input */}
-          <input value={product.name} className="h-10 bg-green-500 border-2 border-black rounded-lg mr-3 mt-3 text-center text-2xl w-5/6 placeholder:text-black" onChange={(e) => OnNameChange(e.target.value)} placeholder="entrer le nom du produit"></input>
+          <input value={product.name} className="h-10 bg-green-500 border-2 border-black rounded-lg mr-3 mt-3 text-center text-2xl w-5/6 placeholder:text-black" onChange={(e) => OnNameChange(e.target.value)} placeholder="nom du produit"></input>
         </div>
       </div>
       {/* Submit button container */}
       <div className='flex justify-center'>
         {/* Submit button */}
-        <button className='bg-green-500 border-2 border-black rounded-lg mt-3 h-12 text-3xl' onClick={submit({ product: product })}>ajouter le produit</button>
+        <button className='bg-green-500 border-2 border-black rounded-lg mt-3 mb-2 h-12 text-3xl' onClick={submit({ product: product })}>ajouter le produit</button>
       </div>
     </div>
   );

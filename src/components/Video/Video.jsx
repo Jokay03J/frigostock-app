@@ -18,6 +18,7 @@ const Video = () => {
 
   const onProductFound = (res) => {
     console.log(res.product);
+    if(res.status === 0) return
     //set product name
     if (!res.product.generic_name_fr || !res.product.product_name_fr) toast.error("produit introuvable");
     else {

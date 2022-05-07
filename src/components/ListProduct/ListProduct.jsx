@@ -21,6 +21,7 @@ const ListProduct = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user)
+        setUserConnected(true);
         superagent
           .get(`https://frigostock-api.herokuapp.com/fridge/${user.uid}/products`)
           .end((err, res) => {
@@ -30,7 +31,6 @@ const ListProduct = () => {
               //success,set products and set loading to false
               setProducts(res.body);
               setLoading(false);
-              setUserConnected(true);
             }
           })
       }
@@ -47,8 +47,8 @@ const ListProduct = () => {
         isUserConnected ?
           isloading ? <div className="text-center text-3xl">chargement en cours...</div> :
             products.length === 0 ? <div className='flex justify-center text-3xl'>aucun produit</div> :
-              <div className='flex items-center flex-col p-2 max-h-screen'>
-                {products.map(product => renderProducts(product,user))}
+              <div className='flex items-center flex-col p-2 max-h-screen overflow-scroll'>
+                {products.map(product => renderProducts(product, user))}
               </div>
 
           : <div className='flex justify-center'>
@@ -61,17 +61,19 @@ const ListProduct = () => {
 
 export default ListProduct;
 
-function renderProducts(product,user) {
+function renderProducts(product, user) {
   return (
-    <div key={product.id} className="w-11/12 h-14 m-1 rounded-lg bg-green-500 border border-black flex justify-between items-center">
-      <div className='text-1xl'>{product.name}</div>
-      <div className='text-3xl'>x{product.amount}</div>
-      <img src={closeIcon} alt="remove product" height={50} width={50} className="float-right h-12 w-12" onClick={() => remove(product.id,user)} />
+    <div key={product.id} className="w-11/12 h-14 m-1 rounded-lg bg-green-500 border border-black flex items-center">
+      <div className='text-2xl h-14 w-8/12 flex items-center overflow-auto'>{product.name}</div>
+      <div className='flex items-center ml-auto'>
+        <div className='text-3xl'>x{product.amount}</div>
+        <img src={closeIcon} alt="remove product" height={50} width={50} className="float-right h-12 w-12" onClick={() => remove(product.id, user)} />
+      </div>
     </div>
   )
 }
 
-function remove(id,user) {
+function remove(id, user) {
   //promise
   const promise = new Promise((resolve, reject) => {
     //fetch specific product by id
