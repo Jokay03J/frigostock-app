@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "351332023300",
+    "project_id": "frigostock-jokay03j",
+    "storage_bucket": "frigostock-jokay03j.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351332023300:android:4aaedf822522bbdec74951",
+        "android_client_info": {
+          "package_name": "com.example.frigostock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351332023300-i2b6f93slejkqqvh1vf320iosp6br7qi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXPaaTWDin5sLy5TaEDHbqwkbDDdH7i_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351332023300-i2b6f93slejkqqvh1vf320iosp6br7qi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351332023300-clmdri5rbudq5p0mrr447lvd8pm5dud3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.frigostock"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
