@@ -4,6 +4,7 @@
 *.moved-aside
 *.pbxuser
 *.perspectivev3
+firebase_app_id_file.json
 **/*sync/
 .sconsign.dblite
 .tags*
