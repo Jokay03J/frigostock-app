@@ -1,4 +1,4 @@
-package com.example.frigostock
+package fr.jokay03j.frigostock
 
 import io.flutter.embedding.android.FlutterActivity
 
