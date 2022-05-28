@@ -1,8 +1,8 @@
 this readme is also available in [🇫🇷french](README_fr.md)
 # frigostock
-
-## How to install Frigostock ?
-# Android
+frigostock is app for managing your fridge, freezer and even shelf!
+# How to install Frigostock ?
+## Android
 Note: the minimum android version required is 4.4.0
 ### 1
 go to [this page]("https://google.com")
