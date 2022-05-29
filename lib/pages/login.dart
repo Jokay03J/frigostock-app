@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final auth = BaseAuth();
+  bool _passwordVisible = false;
 
 //dispose is a function that runs when the widget is removed from the widget tree
   @override
@@ -24,6 +25,11 @@ class _LoginState extends State<Login> {
     nameController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
   }
 
   void forgotpwd() {
@@ -167,9 +173,9 @@ class _LoginState extends State<Login> {
                         controller: nameController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Email',
-                            prefixIcon: Icon(Icons.email)),
+                          border: OutlineInputBorder(),
+                          labelText: 'Email',
+                        ),
                         validator: (value) {
                           // check if value is empty
                           if (value!.isEmpty) {
@@ -188,11 +194,24 @@ class _LoginState extends State<Login> {
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
                         controller: passwordController,
+                        obscureText: !_passwordVisible,
                         keyboardType: TextInputType.visiblePassword,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
                           labelText: 'mot de passe',
-                          prefixIcon: Icon(Icons.password_sharp),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {

@@ -39,10 +39,6 @@ class DisConnected extends StatelessWidget {
   Widget build(BuildContext context) {
     void _navigator(int index) {
       switch (index) {
-        case 0:
-          Navigator.pop(context);
-          break;
-
         case 1:
           Navigator.pushNamed(context, "/newProduct");
           break;
@@ -108,10 +104,6 @@ class Connected extends StatelessWidget {
   Widget build(BuildContext context) {
     void _navigator(int index) {
       switch (index) {
-        case 0:
-          Navigator.pop(context);
-          break;
-
         case 1:
           Navigator.pushNamed(context, "/newProduct");
           break;
