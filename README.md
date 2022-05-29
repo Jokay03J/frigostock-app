@@ -1,4 +1,4 @@
-this readme is also available in [🇫🇷french](README_fr.md)
+this readme is also available in [🇫🇷french](readme/README_fr.md)
 # frigostock
 
 ## How to install Frigostock ?
@@ -17,7 +17,12 @@ unfortunately ios is not supported yet because i don't have iphone or mac for bu
 
 # How to develope app ![vscode logo](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white) ![intelij idea](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
-install flutter sdk and dart
+1. install flutter sdk and dart\
+2. get all dependencies
+```bash
+flutter pub get
+```
+3. configure flutterfire
 ```bash
 flutterfire configure
 ```

@@ -17,7 +17,12 @@ Désolé, ios n'est pas encore supporté car je n'ai pas de iphone ou mac pour l
 
 # Comment contribuer ? ![vscode logo](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white) ![intelij idea](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
-installer le sdk flutter et dart
+1. installer le sdk flutter et dart
+2. installer toute les dépendences
+```bash
+flutter pub get
+```
+3. configurer flutterfire
 ```bash
 flutterfire configure
 ```
