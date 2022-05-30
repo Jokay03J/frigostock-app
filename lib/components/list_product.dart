@@ -157,6 +157,86 @@ class _ListProductState extends State<ListProduct> {
             Navigator.pushNamed(context, "/newProduct");
           },
         ),
+        Padding(
+            padding: const EdgeInsets.all(8),
+            child: FloatingActionButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("filtrer par type de produit?"),
+                          content: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection(widget.user!.uid)
+                                        .get()
+                                        .then((value) => {
+                                              Navigator.pop(context),
+                                              setState(() {
+                                                widget.products = value.docs;
+                                              })
+                                            });
+                                  },
+                                  icon: const Icon(Icons.cancel),
+                                ),
+                                IconButton(
+                                    onPressed: () async {
+                                      await FirebaseFirestore.instance
+                                          .collection(widget.user!.uid)
+                                          .where("category", isEqualTo: "frigo")
+                                          .get()
+                                          .then((value) => {
+                                                Navigator.pop(context),
+                                                setState(() {
+                                                  widget.products = value.docs;
+                                                })
+                                              });
+                                    },
+                                    icon: const Icon(Icons.fastfood)),
+                                IconButton(
+                                    onPressed: () async {
+                                      await FirebaseFirestore.instance
+                                          .collection(widget.user!.uid)
+                                          .where("category",
+                                              isEqualTo: "congelateur")
+                                          .get()
+                                          .then((value) => {
+                                                Navigator.pop(context),
+                                                setState(() {
+                                                  widget.products = value.docs;
+                                                })
+                                              });
+                                    },
+                                    icon: const Icon(Icons.ac_unit)),
+                                IconButton(
+                                  onPressed: () async {
+                                    await FirebaseFirestore.instance
+                                        .collection(widget.user!.uid)
+                                        .where("category", isEqualTo: "etagere")
+                                        .get()
+                                        .then((value) => {
+                                              Navigator.pop(context),
+                                              setState(() {
+                                                widget.products = value.docs;
+                                              })
+                                            });
+                                  },
+                                  icon: const Icon(Icons.all_inbox),
+                                ),
+                              ]),
+                          actions: [
+                            ElevatedButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text("OK"))
+                          ],
+                        );
+                      });
+                },
+                child: const Icon(Icons.filter_alt)))
       ]));
     }
   }
