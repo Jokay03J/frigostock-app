@@ -1,20 +1,66 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:frigostock/components/list_product.dart';
+import 'package:quick_actions/quick_actions.dart';
 
 // ignore: unused_import
 import 'home.dart' show Home;
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
+  State createState() => _Home();
+}
+
+class _Home extends State<Home> {
+  String shortcut = 'no action set';
+
+  @override
+  void initState() {
+    super.initState();
+
+    const QuickActions quickActions = QuickActions();
+    quickActions.initialize((String shortcutType) {
+      setState(() {
+        shortcut = shortcutType;
+      });
+    });
+
+    quickActions.setShortcutItems(<ShortcutItem>[
+      // NOTE: This second action icon will only work on Android.
+      // In a real world project keep the same file name for both platforms.
+      const ShortcutItem(
+          type: 'account', localizedTitle: 'Compte', icon: 'account_circle'),
+      // NOTE: This first action icon will only work on iOS.
+      // In a real world project keep the same file name for both platforms.
+      const ShortcutItem(
+        type: 'new_product',
+        localizedTitle: 'Nouveaux Produit',
+        icon: "add_box",
+      ),
+    ]).then((void _) {
+      setState(() {
+        switch (shortcut) {
+          case "new_product":
+            Navigator.pushNamed(context, '/newProduct');
+            break;
+
+          case "account":
+            Navigator.pushNamed(context, '/account');
+            break;
+        }
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(widget.title),
         ),
         body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),

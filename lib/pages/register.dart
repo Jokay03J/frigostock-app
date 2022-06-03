@@ -29,6 +29,7 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
+    super.initState();
     _passwordVisible = false;
   }
 
