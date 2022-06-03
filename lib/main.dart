@@ -19,20 +19,23 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(
       MaterialApp(
-        home: const Home(title: "frigostock - Accueil"),
+        home: const Home(title: "Frigostock - Accueil"),
         theme: ThemeData(
           primarySwatch: Colors.red,
         ),
+        darkTheme: ThemeData(brightness: Brightness.dark),
+        themeMode: ThemeMode.system,
         routes: <String, WidgetBuilder>{
           '/newProduct': (BuildContext context) =>
-              const NewProductPage(title: "frigostock - Nouveau Produit"),
+              const NewProductPage(title: "Frigostock - Nouveaux Produit"),
           '/account': (BuildContext context) =>
-              const Account(title: "frigostock - Compte"),
+              const Account(title: "Frigostock - Compte"),
           '/login': (BuildContext context) =>
-              const Login(title: "frigostock - Connexion"),
+              const Login(title: "Frigostock - Connexion"),
           '/register': (BuildContext context) =>
-              const Register(title: "frigostock - Inscription"),
+              const Register(title: "Frigostock - Inscription"),
         },
+        title: "Frigostock",
       ),
     );
   });
