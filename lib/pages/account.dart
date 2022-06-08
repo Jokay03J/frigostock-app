@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:frigostock/main.dart';
 
 // ignore: unused_import
 import "account.dart" show Account;
@@ -36,36 +37,59 @@ class _AccountState extends State<Account> {
   }
 }
 
-class Connected extends StatelessWidget {
+class Connected extends StatefulWidget {
   const Connected({Key? key, required this.user}) : super(key: key);
 
   final User? user;
 
   @override
+  _Connected createState() => _Connected();
+}
+
+class _Connected extends State<Connected> {
+  bool theme = false;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'connecté en tant que',
-            ),
-            Text(
-              '${user?.email}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            ElevatedButton(
-              child: const Text('se déconnecter'),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pop(context);
-              },
-            ),
-          ],
+        body: Center(
+            child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const Text(
+          'connecté en tant que',
         ),
-      ),
-    );
+        Text(
+          '${widget.user?.email}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        ElevatedButton(
+          child: const Text('se déconnecter'),
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+            Navigator.pop(context);
+          },
+        ),
+        Padding(
+            padding: const EdgeInsets.all(8),
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text("Theme"),
+                IconButton(
+                    onPressed: () {
+                      App.of(context)?.changeTheme(1);
+                    },
+                    icon: const Icon(Icons.dark_mode_outlined)),
+                IconButton(
+                    onPressed: () {
+                      App.of(context)?.changeTheme(2);
+                    },
+                    icon: const Icon(Icons.lightbulb_outlined)),
+              ],
+            ))),
+      ],
+    )));
   }
 }
 
