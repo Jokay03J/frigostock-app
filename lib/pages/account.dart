@@ -43,7 +43,7 @@ class Connected extends StatefulWidget {
   final User? user;
 
   @override
-  _Connected createState() => _Connected();
+  State createState() => _Connected();
 }
 
 class _Connected extends State<Connected> {

@@ -25,33 +25,28 @@ class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  _App createState() => _App();
+  State createState() => _App();
 
-  static _App? of(BuildContext context) =>
-      context.findAncestorStateOfType<_App>();
+  static of(BuildContext context) => context.findAncestorStateOfType<_App>();
 }
 
 class _App extends State<App> {
   ThemeMode _themeMode = ThemeMode.system;
-  int SelectedIndex = 0;
 
   Future<void> changeTheme(int themeMode) async {
     switch (themeMode) {
       case 0:
         setState(() {
-          SelectedIndex = 0;
           _themeMode = ThemeMode.system;
         });
         break;
       case 1:
         setState(() {
-          SelectedIndex = 1;
           _themeMode = ThemeMode.dark;
         });
         break;
       case 2:
         setState(() {
-          SelectedIndex = 2;
           _themeMode = ThemeMode.light;
         });
         break;
