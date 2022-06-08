@@ -1,28 +1,34 @@
-this readme is also available in [🇫🇷french](readme/README_fr.md)
-# frigostock
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## How to install Frigostock ?
-# Android [![android logo](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/frigostock/app/releases/latest/download/app-release.apk)
-Note: the minimum android version required is 4.4.0
-### 1.
-[![download logo](https://img.shields.io/badge/F%20Droid-1976D2?style=for-the-badge&logo=f-droid&logoColor=white)](https://github.com/frigostock/app/releases/latest/download/app-release.apk)\
-go to [this page]("https://github.com/frigostock/app/releases/latest/download/app-release.apk")
-click on "install"
-### 2.
-a dialog box opens, click on "allow"
-### 3.
-you are done !
-# Ios ![ios logo](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
-unfortunately ios is not supported yet because i don't have iphone or mac for build ios app
+## Getting Started
 
-# How to develope app ![vscode logo](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white) ![intelij idea](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+First, run the development server:
 
-1. install flutter sdk and dart\
-2. get all dependencies
 ```bash
-flutter pub get
+npm run dev
+# or
+yarn dev
 ```
-3. configure flutterfire
-```bash
-flutterfire configure
-```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
