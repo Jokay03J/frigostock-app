@@ -30,3 +30,15 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# dart
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+macos
+lib
+ios
+android
+.dart_tool
+windows
+linux
