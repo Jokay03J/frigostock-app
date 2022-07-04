@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:frigostock/pages/account.dart';
 import 'package:frigostock/pages/home.dart';
 import 'package:frigostock/pages/login.dart';
@@ -11,6 +12,7 @@ import 'firebase_options.dart';
 //main is a function that runs when the app starts
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: "../.env");
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
