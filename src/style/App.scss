@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+// Navbar
+
+.header {
+  display: flex;
+  padding: 20px;
+  height: auto;
+  margin: 0;
+  border: 2px black;
+  box-shadow: rgb(0 0 0 / 28%) 0px 2px 4px;
+
+  .icon-header {
+    display: flex;
+    width: 50px;
+  }
+
+  .text-icon-header {
+    font-size: 50px;
+    margin: auto;
+    margin-left: 20px;
+    font-family: "Roboto", Helvetica, sans-serif;
+  }
+}
+
+// Brand
+
+.brand-container {
+  display: flex;
+  width: 100%;
+  height: 400px;
+
+  .texts-container {
+    width: 50%;
+    margin: auto;
+    margin-top: 120px;
+    margin-left: 20px;
+
+    .text-subtitle {
+      font-size: 20px;
+      font-family: "Roboto-regular", Helvetica, sans-serif;
+
+      @media screen and (max-width: 768px) {
+        font-size: 15px;
+      }
+    }
+
+    .text-title {
+      font-size: 30px;
+      font-family: "Roboto", Helvetica, sans-serif;
+      margin-bottom: 20px;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .img {
+    width: 50%;
+    background-color: black;
+  }
+
+  .gets-app-container {
+    display: flex;
+
+    .gets-app-item {
+      width: 200px;
+      height: auto;
+
+      @media screen and (max-width: 768px) {
+        width: 150px;
+      }
+    }
+  }
+}
+
+// Footer & get App img
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .get-app {
+    width: 450px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 500px) {
+    .get-app {
+      width: 176px;
+    }
+  }
+}
