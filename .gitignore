@@ -10,7 +10,6 @@
 .svn/
 migrate_working_dir/
 **/google-services.json
-firebase_options.dart
 .next
 # IntelliJ related
 *.iml
@@ -36,9 +35,6 @@ android/app/google-services.json
 .pub/
 /build/
 
-# Web related
-lib/generated_plugin_registrant.dart
-
 # Symbolication related
 app.*.symbols
 
@@ -50,3 +46,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 node_modules
+*.env
